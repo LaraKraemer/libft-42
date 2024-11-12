@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:23:54 by lkramer           #+#    #+#             */
-/*   Updated: 2024/11/11 12:30:41 by lkramer          ###   ########.fr       */
+/*   Updated: 2024/11/12 13:31:12 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <libft.h>
@@ -26,7 +26,6 @@ void	*ft_memset(void *dest, int c, size_t n)
 	}
 	return (dest);
 }
-
 /*
 #include <stdio.h>
 #include <string.h>
@@ -42,8 +41,8 @@ int	main(void)
 	ft_memset(buffer1, 'X', 10);
 	printf("Test 1 - Fill with 'X': %s\n", buffer1); // Expected: XXXXXXXXXX
 
-	// Test 2: Partial fill (filling 5 bytes with 'Y')	ft_memset(buffer2, 'Y', 5);	printf("Test 2 - Fill 5 bytes with 'Y': %s\n", buffer2); // Expected: YYYYYfghi
-
+	// Test 2: Partial fill (filling 5 bytes with 'Y')	ft_memset(buffer2, 'Y', 5);
+	printf("Test 2 Fill 5 bytes with 'Y': %s\n", buffer2); // Expected: YYYYYfghi
 	// Test 3: Edge case - fill with 0 bytes (buffer should remain unchanged)
 	ft_memset(buffer3, 'Z', 0);
 	printf("Test 3 - Fill with 0 bytes (unchanged): %s\n", buffer3); // Expected: ""
@@ -57,7 +56,8 @@ int	main(void)
 	printf("\n");
 
 	// Test 5: Boundary case - NULL pointer (undefined but common test case)
-	// This may crash or produce a warning since memset with NULL isn't defined behavior
+	// This may crash or produce a warning since memset with NULL isn't defined 
+	behavior
 	ft_memset(NULL, 'B', 5); // Expect this to do nothing or potentially crash
 
 	return (0);

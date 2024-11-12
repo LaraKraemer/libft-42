@@ -18,6 +18,8 @@ SRC = \
     ft_isprint.c \
     ft_memset.c \
     ft_strncmp.c \
+    ft_bzero.c \
+    ft_memcpy.c \
 
 # Object files - .c files
 OBJ = $(SRC:.c=.o)

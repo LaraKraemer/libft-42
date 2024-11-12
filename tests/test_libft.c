@@ -10,8 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unity.h>   // Unity's header file
-#include "../libft.h"  // Your library's header
+#include <unity.h>   
+#include "../libft.h"  
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 // Define the setUp function for test initialization
 void setUp(void) {
@@ -53,6 +56,46 @@ void test_ft_memset(void)
     TEST_ASSERT_EQUAL_MEMORY("AAAAA\0\0\0\0\0", buffer, 10);
 }
 
+// Test for ft_bzero
+void test_ft_bzero(void) {
+    char buffer[10];
+    char zero_buffer[10] = {0};  // Buffer with all zeros for comparison
+
+    // 1. Basic functionality: Zero out the entire buffer
+    memset(buffer, 'A', sizeof(buffer));  // Fill buffer with non-zero values
+    ft_bzero(buffer, 10);  // Zero out the entire buffer
+    TEST_ASSERT_EQUAL_MEMORY(zero_buffer, buffer, 10);  // Compare to zero-filled buffer
+
+    // 2. Edge Case: Zero-length input (should do nothing)
+    memset(buffer, 'A', sizeof(buffer));  // Reset buffer to non-zero values
+    ft_bzero(buffer, 0);  // Call with zero length
+    char expected_buffer[10] = {'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A', 'A'};
+    TEST_ASSERT_EQUAL_MEMORY(expected_buffer, buffer, 10);  // Ensure no change
+
+    // 3. Edge Case: Partial zeroing
+    memset(buffer, 'A', sizeof(buffer));  // Reset buffer to non-zero values
+    ft_bzero(buffer, 5);  // Zero out only the first 5 bytes
+    char partial_zero_buffer[10] = {0, 0, 0, 0, 0, 'A', 'A', 'A', 'A', 'A'};
+    TEST_ASSERT_EQUAL_MEMORY(partial_zero_buffer, buffer, 10);  // Verify partial zeroing
+
+    // 4. Edge Case: Single-byte zeroing
+    char single_byte_buffer[1] = {'A'};
+    ft_bzero(single_byte_buffer, 1);  // Zero out 1-byte buffer
+    TEST_ASSERT_EQUAL_MEMORY("\0", single_byte_buffer, 1);  // Verify single byte is zero
+
+    // 5. Large buffer test: Zero out a large memory block
+    size_t large_size = 10000;
+    char *large_buffer = malloc(large_size);
+    memset(large_buffer, 'A', large_size);  // Fill buffer with non-zero values
+    ft_bzero(large_buffer, large_size);  // Zero out the entire large buffer
+    char *large_zero_buffer = calloc(large_size, 1);  // Allocate a large zero-filled buffer for comparison
+    TEST_ASSERT_EQUAL_MEMORY(large_zero_buffer, large_buffer, large_size);  // Compare to zero-filled buffer
+
+    // Free dynamically allocated memory
+    free(large_buffer);
+    free(large_zero_buffer);
+}
+
 // Main test runner
 int main(void)
 {
@@ -60,6 +103,7 @@ int main(void)
     RUN_TEST(test_ft_strlen);
     RUN_TEST(test_ft_isalpha);
     RUN_TEST(test_ft_memset);
+    RUN_TEST(test_ft_bzero);
     return UNITY_END();
 }
 
