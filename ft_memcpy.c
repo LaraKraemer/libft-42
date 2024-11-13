@@ -9,25 +9,31 @@
 /*   Updated: 2024/11/12 14:31:59 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdlib.h>
 #include <libft.h>
 
-void	*memcpy(void *to, const void *from, size_t numBytes)
+void	*ft_memcpy(void *dest, const void *src, size_t numBytes)
 {
+	// declaration of two temp pointers 
+	// declaration of counter variable 
 	size_t			i;
-	unsigned char	*s_to;
-	unsigned char	*s_from;
+	unsigned char	*s_dest;
+	unsigned char	*s_src;
 
+	//  check if both src and dst are NULL 
+	if (dest == NULL && src == NULL)
+		return (dest);
 	i = 0;
-	s_to = (unsigned char *)to;
-	s_from = (unsigned char *)from; 
+	// assigning temp pointers to actual pointers
+	s_dest = (unsigned char *)dest;
+	s_src = (unsigned char *)src; 
+	// looping until numBytes of src is copied in dest
 	while (i < numBytes)
 	{
-		s_to[i] = s_from[i]; 
+		s_dest[i] = s_src[i]; 
 		i++;
 	}
-	return (s_to); 
+	// returning modified dest
+	return (s_dest); 
 }
 
 /*

@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                       	:+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 11:22:43 by lkramer           #+#    #+#             */
-/*   Updated: 2024/11/11 12:32:15 by lkramer          ###   ########.fr       */
+/*   Created: 2024/11/13 17:23:54 by lkramer           #+#    #+#             */
+/*   Updated: 2024/11/13 17:51:12 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <libft.h>
 
-size_t	ft_strlen(const char *str)
+char	*ft_strchr(const char *s, int c)
 {
-	size_t	length;
-
-	length = 0;
+	const char	*str;
+	char		cc;		
+	
+	str = s;
+	cc = (char) c;
 	while (*str)
 	{
-		length++;
-		str++;
+		if (*str == cc)
+			return (char *)str;
+	str++;
 	}
-	return (length);
+	if (cc == '\0')
+		return (char *)str;
+	return (0);
 }
-
-/*
-#include <stdio.h>
-int main(void)
-{
-	char word[20] = "Hello World!";
-	printf("%d", ft_strlen(word));
-	return 0;
-}
-*/

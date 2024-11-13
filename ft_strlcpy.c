@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 11:22:43 by lkramer           #+#    #+#             */
-/*   Updated: 2024/11/11 12:32:15 by lkramer          ###   ########.fr       */
+/*   Created: 2024/11/11 11:23:54 by lkramer           #+#    #+#             */
+/*   Updated: 2024/11/12 13:31:12 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <libft.h>
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlcpy(char *dest, const char *src, size_t destSize)
 {
-	size_t	length;
+	size_t	src_len;
 
-	length = 0;
-	while (*str)
+	src_len = ft_strlen(src);
+	if (destSize == 0)
+		return (src_len);
+	// if dest has enough space to hold src plus \0
+	if (src_len + 1 < destSize)
+		// copy whole src plus \0
+		ft_memcpy(dest, src, src_len + 1);
+	else if (destSize != 0)
 	{
-		length++;
-		str++;
+		ft_memcpy(dest, src, destSize - 1);
+		dest[destSize - 1] = 0;
 	}
-	return (length);
+	return (src_len);
 }
-
-/*
-#include <stdio.h>
-int main(void)
-{
-	char word[20] = "Hello World!";
-	printf("%d", ft_strlen(word));
-	return 0;
-}
-*/

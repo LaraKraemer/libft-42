@@ -96,6 +96,171 @@ void test_ft_bzero(void) {
     free(large_zero_buffer);
 }
 
+void test_ft_memmove_all_cases(void) {
+    // Test Case 1: Simple copy with non-overlapping regions
+    char src1[] = "Hello, World!";
+    char dest1[20] = {0};
+    ft_memmove(dest1, src1, strlen(src1) + 1);  // Copy including null terminator
+    TEST_ASSERT_EQUAL_STRING("Hello, World!", dest1);
+
+    // Test Case 2: Same source and destination
+    char src2[] = "Hello, World!";
+    ft_memmove(src2, src2, strlen(src2) + 1);  // Should remain unchanged
+    TEST_ASSERT_EQUAL_STRING("Hello, World!", src2);
+
+    // Test Case 3: Overlapping regions (src < dest)
+    char buffer3[] = "1234567890";
+    ft_memmove(buffer3 + 2, buffer3, 5);  // Move "12345" to the start of "34567890"
+    TEST_ASSERT_EQUAL_STRING("1212345890", buffer3);
+
+    // Test Case 4: Overlapping regions (dest < src)
+    char buffer4[] = "1234567890";
+    ft_memmove(buffer4, buffer4 + 2, 5);  // Move "34567" to the start of "1234567890"
+    TEST_ASSERT_EQUAL_STRING("3456767890", buffer4);
+
+    // Test Case 5: Copying zero bytes
+    char src5[] = "Hello, World!";
+    char dest5[20] = "Test String";
+    ft_memmove(dest5, src5, 0);  // No bytes should be copied
+    TEST_ASSERT_EQUAL_STRING("Test String", dest5);
+
+    // Test Case 6: NULL pointers
+    char dest6[20] = "Existing Data";
+    TEST_ASSERT_NULL(ft_memmove(NULL, dest6, 5));       // Source is NULL
+    TEST_ASSERT_NULL(ft_memmove(dest6, NULL, 5));       // Destination is NULL
+    TEST_ASSERT_NULL(ft_memmove(NULL, NULL, 5));        // Both are NULL
+
+    // Test Case 7: Large data block
+    char src7[1000];
+    char dest7[1000];
+    memset(src7, 'A', sizeof(src7));
+    src7[999] = '\0';  // Null-terminate for string comparison
+    ft_memmove(dest7, src7, sizeof(src7));
+    TEST_ASSERT_EQUAL_MEMORY(src7, dest7, sizeof(src7));  // Compare entire memory block
+}
+
+void test_ft_strlcpy(void)
+{
+    // Test Case 1: Normal copy (src fits in dest)
+    char dest1[20] = {0};   // Allocate space for the destination
+    const char *src1 = "Hello";
+    size_t result1 = ft_strlcpy(dest1, src1, sizeof(dest1));  // Copy "Hello" into dest1
+    TEST_ASSERT_EQUAL_STRING("Hello", dest1);  // Ensure the string is copied
+    TEST_ASSERT_EQUAL(result1, 5);  // The length of the source string is 5
+
+    // Test Case 2: Destination smaller than source (destination will be truncated)
+    char dest2[5] = {0};    // Allocate space for the destination (smaller than src)
+    const char *src2 = "Hello, World!";
+    size_t result2 = ft_strlcpy(dest2, src2, sizeof(dest2));  // Copy "Hello" into dest2 (it gets truncated)
+    TEST_ASSERT_EQUAL_STRING("Hell", dest2);  // The destination will hold "Hell"
+    TEST_ASSERT_EQUAL(result2, 13);  // The length of the source string is 13
+
+    // Test Case 3: Destination is large enough to hold source + null terminator
+    char dest3[20] = {0};    // Allocate space for the destination (enough for src and null terminator)
+    const char *src3 = "World!";
+    size_t result3 = ft_strlcpy(dest3, src3, sizeof(dest3));  // Copy "World!" into dest3
+    TEST_ASSERT_EQUAL_STRING("World!", dest3);  // Ensure the entire string is copied
+    TEST_ASSERT_EQUAL(result3, 6);  // The length of the source string is 6
+}
+
+void test_ft_toupper(void)
+{
+    // Test lowercase letters
+    TEST_ASSERT_EQUAL_INT('A', ft_toupper('a'));
+    TEST_ASSERT_EQUAL_INT('Z', ft_toupper('z'));
+    TEST_ASSERT_EQUAL_INT('M', ft_toupper('m'));
+
+    // Test uppercase letters (should remain unchanged)
+    TEST_ASSERT_EQUAL_INT('A', ft_toupper('A'));
+    TEST_ASSERT_EQUAL_INT('Z', ft_toupper('Z'));
+    TEST_ASSERT_EQUAL_INT('M', ft_toupper('M'));
+
+    // Test non-alphabet characters (should remain unchanged)
+    TEST_ASSERT_EQUAL_INT('1', ft_toupper('1'));
+    TEST_ASSERT_EQUAL_INT('!', ft_toupper('!'));
+    TEST_ASSERT_EQUAL_INT(' ', ft_toupper(' '));
+    TEST_ASSERT_EQUAL_INT('@', ft_toupper('@'));
+
+    // Test boundary values around lowercase 'z' and uppercase 'A'
+    TEST_ASSERT_EQUAL_INT('[', ft_toupper('[')); // ASCII character after 'Z'
+    TEST_ASSERT_EQUAL_INT('`', ft_toupper('`')); // ASCII character before 'a'
+
+    // Test with non-printable character (boundary case)
+    TEST_ASSERT_EQUAL_INT('\n', ft_toupper('\n'));
+}
+
+void test_ft_tolower(void)
+{
+    // Test lowercase letters(should remain unchanged)
+    TEST_ASSERT_EQUAL_INT('a', ft_tolower('a'));
+    TEST_ASSERT_EQUAL_INT('z', ft_tolower('z'));
+    TEST_ASSERT_EQUAL_INT('m', ft_tolower('m'));
+
+    // Test uppercase letters 
+    TEST_ASSERT_EQUAL_INT('a', ft_tolower('A'));
+    TEST_ASSERT_EQUAL_INT('z', ft_tolower('Z'));
+    TEST_ASSERT_EQUAL_INT('m', ft_tolower('M'));
+
+    // Test non-alphabet characters (should remain unchanged)
+    TEST_ASSERT_EQUAL_INT('1', ft_tolower('1'));
+    TEST_ASSERT_EQUAL_INT('!', ft_tolower('!'));
+    TEST_ASSERT_EQUAL_INT(' ', ft_tolower(' '));
+    TEST_ASSERT_EQUAL_INT('@', ft_tolower('@'));
+
+    // Test boundary values around lowercase 'z' and uppercase 'A'
+    TEST_ASSERT_EQUAL_INT('[', ft_tolower('[')); // ASCII character after 'Z'
+    TEST_ASSERT_EQUAL_INT('`', ft_tolower('`')); // ASCII character before 'a'
+
+    // Test with non-printable character (boundary case)
+    TEST_ASSERT_EQUAL_INT('\n', ft_tolower('\n'));
+}
+
+void test_ft_strchr(void) {
+    // Test Case 1: Character is present in the middle of the string
+    const char str1[] = "Hello, World!";
+    char ch1 = 'W';
+    char *result1 = ft_strchr(str1, ch1);
+    TEST_ASSERT_NOT_NULL_MESSAGE(result1, "Character 'W' should be found in \"Hello, World!\"");
+    TEST_ASSERT_EQUAL_PTR(&str1[7], result1);
+
+    // Test Case 2: Character is not present in the string
+    const char str2[] = "Hello, World!";
+    char ch2 = 'x';
+    char *result2 = ft_strchr(str2, ch2);
+    TEST_ASSERT_NULL_MESSAGE(result2, "Character 'x' should not be found in \"Hello, World!\"");
+
+    // Test Case 3: Search for the null terminator
+    const char str3[] = "Hello, World!";
+    char ch3 = '\0';
+    char *result3 = ft_strchr(str3, ch3);
+    TEST_ASSERT_NOT_NULL_MESSAGE(result3, "Null terminator should be found at the end of \"Hello, World!\"");
+    TEST_ASSERT_EQUAL_PTR(&str3[13], result3);
+}
+
+void test_ft_strrchr(void)
+{
+    // Test case 1: Find last occurrence of 'o' in the string
+    const char *str1 = "Hello, World!";
+    char ch1 = 'o';
+    char *result1 = ft_strrchr(str1, ch1);
+    TEST_ASSERT_NOT_NULL(result1);  // Should find the last 'o' in "Hello, World!"
+    TEST_ASSERT_EQUAL_PTR(&str1[8], result1);  // 'o' should be at index 7
+
+    // Test case 2: Character not found in the string
+    const char *str2 = "Hello, World!";
+    char ch2 = 'z';
+    char *result2 = ft_strrchr(str2, ch2);
+    TEST_ASSERT_NULL(result2);  // 'z' is not in the string, so result should be NULL
+    
+    // Test case 3: Find the last occurrence of the null terminator
+    const char *str3 = "Hello, World!";
+    char ch3 = '\0';
+    char *result3 = ft_strrchr(str3, ch3);
+    TEST_ASSERT_NOT_NULL(result3);  // Should find the null terminator at the end of the string
+    TEST_ASSERT_EQUAL_PTR(&str3[13], result3);  // Null terminator is at index 13
+}
+
+
 // Main test runner
 int main(void)
 {
@@ -104,6 +269,12 @@ int main(void)
     RUN_TEST(test_ft_isalpha);
     RUN_TEST(test_ft_memset);
     RUN_TEST(test_ft_bzero);
+    RUN_TEST(test_ft_memmove_all_cases);
+    RUN_TEST(test_ft_strlcpy);
+    RUN_TEST(test_ft_toupper);
+    RUN_TEST(test_ft_tolower);
+    RUN_TEST(test_ft_strchr);
+    RUN_TEST(test_ft_strrchr);
     return UNITY_END();
 }
 
