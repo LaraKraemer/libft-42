@@ -28,6 +28,7 @@ SRC = \
     ft_strrchr.c \
     ft_memchr.c \
     ft_memcmp.c \
+    ft_strnstr.c \
 
 
 # Object files - .c files

@@ -303,6 +303,28 @@ void test_ft_memcmp(void) {
     TEST_ASSERT_EQUAL_INT(0, result3);
 }
 
+void test_ft_strnstr(void) {
+    // Test Case 1: String is present in the middle of the string
+    const char s1[] = "Hello, World!";
+    const char s2[] = "World";
+    size_t n1 = sizeof(s1);  // Compare full length of strings
+    char *result1 = ft_strnstr(s1, s2, n1);
+    TEST_ASSERT_NOT_NULL_MESSAGE(result1, "Expected 'World' to be found in 'Hello, World!'");
+    TEST_ASSERT_EQUAL_PTR(&s1[7], result1);  // Check if result points to the correct start of "World"
+
+    // Test Case 2: Substring is not present
+    const char s3[] = "Hello, World!";
+    const char s4[] = "Universe";
+    char *result2 = ft_strnstr(s3, s4, sizeof(s3));
+    TEST_ASSERT_NULL_MESSAGE(result2, "Expected 'Universe' not to be found in 'Hello, World!'");
+
+    // Test Case 4: Empty needle
+    const char s7[] = "Hello, World!";
+    const char s8[] = "";
+    char *result4 = ft_strnstr(s7, s8, sizeof(s7));
+    TEST_ASSERT_EQUAL_PTR(s7, result4);  // Should return the start of haystack if needle is empty
+}
+
 // Main test runner
 int main(void)
 {
@@ -319,6 +341,7 @@ int main(void)
     RUN_TEST(test_ft_strrchr);
     RUN_TEST(test_ft_memchr);
     RUN_TEST(test_ft_memcmp);
+    RUN_TEST(test_ft_strnstr);
     return UNITY_END();
 }
 
