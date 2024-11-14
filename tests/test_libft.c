@@ -403,6 +403,29 @@ void test_ft_calloc(void)
     }
 }
 
+// Test function for strdup
+void test_ft_strdup(void) 
+{
+    // Test 1: Basic functionality - strdup on a non-empty string
+    const char* str1 = "Hello, World!";
+    char* result1 = ft_strdup(str1);
+    TEST_ASSERT_NOT_NULL(result1);  // Check that memory allocation was successful
+    TEST_ASSERT_EQUAL_STRING(str1, result1);  
+    free(result1);  
+
+    // Test 2: Edge case - empty string
+    const char* str2 = "";
+    char* result2 = ft_strdup(str2);
+    TEST_ASSERT_NOT_NULL(result2);  // The memory allocation should succeed
+    TEST_ASSERT_EQUAL_STRING(str2, result2);  // The empty string should be duplicated
+    free(result2);
+
+    // Test 3: NULL input
+    const char* str3 = NULL;
+    char* result3 = ft_strdup(str3);
+    TEST_ASSERT_NULL(result3);  // The result should be NULL for a NULL input
+}
+
 // Main test runner
 int main(void)
 {
@@ -422,6 +445,7 @@ int main(void)
     RUN_TEST(test_ft_strnstr);
     RUN_TEST(test_ft_atoi);
     RUN_TEST(test_ft_calloc);
+    RUN_TEST(test_ft_strdup);
     return UNITY_END();
 }
 
