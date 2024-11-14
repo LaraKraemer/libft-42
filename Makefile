@@ -26,6 +26,7 @@ SRC = \
     ft_tolower.c \
     ft_strchr.c \
     ft_strrchr.c \
+    ft_memchr.c \
 
 # Object files - .c files
 OBJ = $(SRC:.c=.o)

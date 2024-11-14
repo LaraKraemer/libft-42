@@ -14,6 +14,7 @@
 #include "../libft.h"  
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include <string.h>
 
 // Define the setUp function for test initialization
@@ -260,6 +261,27 @@ void test_ft_strrchr(void)
     TEST_ASSERT_EQUAL_PTR(&str3[13], result3);  // Null terminator is at index 13
 }
 
+void test_ft_memchr(void) {
+    // Test Case 1: Character is present in the middle of the string
+    const char str1[] = "Hello, World!";
+    char *result1 = ft_memchr(str1, 'W', 13);
+    printf("Result for 'W': %p, Expected: %p\n", result1, &str1[7]);
+    TEST_ASSERT_NOT_NULL_MESSAGE(result1, "Character 'W' should be found in \"Hello, World!\"");
+    TEST_ASSERT_EQUAL_PTR(&str1[7], result1);
+
+    // Test Case 2: Character is not present in the string
+    const char str2[] = "Hello, World!";
+    char *result2 = ft_memchr(str2, 'x', 13);
+    printf("Result for 'x': %p\n", result2);
+    TEST_ASSERT_NULL_MESSAGE(result2, "Character 'x' should not be found in \"Hello, World!\"");
+
+    // Test Case 3: Search for the null terminator
+    const char str3[] = "Hello, World!";
+    char *result3 = ft_memchr(str3, '\0', 14);
+    printf("Result for null terminator: %p, Expected: %p\n", result3, &str3[13]);
+    TEST_ASSERT_NOT_NULL_MESSAGE(result3, "Null terminator should be found at the end of \"Hello, World!\"");
+    TEST_ASSERT_EQUAL_PTR(&str3[13], result3);
+}
 
 // Main test runner
 int main(void)
@@ -275,6 +297,7 @@ int main(void)
     RUN_TEST(test_ft_tolower);
     RUN_TEST(test_ft_strchr);
     RUN_TEST(test_ft_strrchr);
+    RUN_TEST(test_ft_memchr);
     return UNITY_END();
 }
 
