@@ -353,6 +353,56 @@ void test_ft_atoi(void)
     TEST_ASSERT_EQUAL_INT(0, ft_atoi("++1234"));
 }
 
+void test_ft_calloc(void)
+{
+    // Test 1: Check if memory is allocated and initialized to zero for one block of 5 bytes
+    {
+        size_t count = 5;
+        size_t size = 1;
+        unsigned char *result = ft_calloc(count, size);
+
+        // Check that the memory is allocated
+        TEST_ASSERT_NOT_NULL(result);
+
+        // Check that the memory is initialized to zero
+        for (size_t i = 0; i < count; i++)
+        {
+            TEST_ASSERT_EQUAL_UINT8(0, result[i]);
+        }
+
+        free(result);  // Don't forget to free the memory after the test
+    }
+
+    // Test 2: Check if memory is allocated and initialized to zero for multiple blocks of 4 bytes each
+    {
+        size_t count = 3;
+        size_t size = 4;  // Allocate for 3 blocks of 4 bytes each
+        unsigned char *result = ft_calloc(count, size);
+
+        // Check that the memory is allocated
+        TEST_ASSERT_NOT_NULL(result);
+
+        // Check that the memory is initialized to zero
+        for (size_t i = 0; i < count * size; i++)
+        {
+            TEST_ASSERT_EQUAL_UINT8(0, result[i]);
+        }
+
+        free(result);  // Free the memory
+    }
+
+    // Test 3: Check if ft_calloc handles zero allocation request correctly
+    {
+        size_t count = 0;
+        size_t size = 10;  // Requesting 0 blocks of 10 bytes each
+        unsigned char *result = ft_calloc(count, size);
+
+        // Check that the memory is not allocated, it should return NULL
+        TEST_ASSERT_NOT_NULL(result);
+        free(result);  // Free the memory
+    }
+}
+
 // Main test runner
 int main(void)
 {
@@ -371,6 +421,7 @@ int main(void)
     RUN_TEST(test_ft_memcmp);
     RUN_TEST(test_ft_strnstr);
     RUN_TEST(test_ft_atoi);
+    RUN_TEST(test_ft_calloc);
     return UNITY_END();
 }
 
