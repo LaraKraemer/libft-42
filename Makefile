@@ -27,6 +27,8 @@ SRC = \
     ft_strchr.c \
     ft_strrchr.c \
     ft_memchr.c \
+    ft_memcmp.c \
+
 
 # Object files - .c files
 OBJ = $(SRC:.c=.o)

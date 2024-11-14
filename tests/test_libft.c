@@ -265,22 +265,42 @@ void test_ft_memchr(void) {
     // Test Case 1: Character is present in the middle of the string
     const char str1[] = "Hello, World!";
     char *result1 = ft_memchr(str1, 'W', 13);
-    printf("Result for 'W': %p, Expected: %p\n", result1, &str1[7]);
     TEST_ASSERT_NOT_NULL_MESSAGE(result1, "Character 'W' should be found in \"Hello, World!\"");
     TEST_ASSERT_EQUAL_PTR(&str1[7], result1);
 
     // Test Case 2: Character is not present in the string
     const char str2[] = "Hello, World!";
     char *result2 = ft_memchr(str2, 'x', 13);
-    printf("Result for 'x': %p\n", result2);
     TEST_ASSERT_NULL_MESSAGE(result2, "Character 'x' should not be found in \"Hello, World!\"");
 
     // Test Case 3: Search for the null terminator
     const char str3[] = "Hello, World!";
     char *result3 = ft_memchr(str3, '\0', 14);
-    printf("Result for null terminator: %p, Expected: %p\n", result3, &str3[13]);
     TEST_ASSERT_NOT_NULL_MESSAGE(result3, "Null terminator should be found at the end of \"Hello, World!\"");
     TEST_ASSERT_EQUAL_PTR(&str3[13], result3);
+}
+
+void test_ft_memcmp(void) {
+    // Test Case 1: Character is present in the middle of the string
+    const char s1[] = "Hello, World!";
+    const char s2[] = "Hello, World!";
+    size_t n1 = sizeof(s1);  // Compare full length of strings
+    int result = ft_memcmp(s1, s2, n1);
+    TEST_ASSERT_EQUAL_INT(0, result);
+
+    // Test case: Memory blocks differ at the end
+    const char s3[] = "Hello, World!";
+    const char s4[] = "Hello, World?";
+    size_t n2 = sizeof(s3);  // Compare full length of strings
+    int result2 = ft_memcmp(s3, s4, n2);
+    TEST_ASSERT_NOT_EQUAL(0, result2);
+
+    // Test case: Comparing part of the memory block
+    const char s5[] = "Hello, World!";
+    const char s6[] = "Hello, Everyone!";
+    size_t n3 = 5;  // Only compare the first 5 bytes
+    int result3 = ft_memcmp(s5, s6, n3);
+    TEST_ASSERT_EQUAL_INT(0, result3);
 }
 
 // Main test runner
@@ -298,6 +318,7 @@ int main(void)
     RUN_TEST(test_ft_strchr);
     RUN_TEST(test_ft_strrchr);
     RUN_TEST(test_ft_memchr);
+    RUN_TEST(test_ft_memcmp);
     return UNITY_END();
 }
 
