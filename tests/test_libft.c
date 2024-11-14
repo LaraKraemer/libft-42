@@ -325,6 +325,34 @@ void test_ft_strnstr(void) {
     TEST_ASSERT_EQUAL_PTR(s7, result4);  // Should return the start of haystack if needle is empty
 }
 
+void test_ft_atoi(void) 
+{
+// Test case 1: Basic positive number
+    TEST_ASSERT_EQUAL_INT(1234, ft_atoi("1234"));
+    
+    // Test case 2: Basic negative number
+    TEST_ASSERT_EQUAL_INT(-1234, ft_atoi("-1234"));
+
+    // Test case 3: Leading whitespace with a positive number
+    TEST_ASSERT_EQUAL_INT(42, ft_atoi("    42"));
+
+    // Test case 4: Leading whitespace with a negative number
+    TEST_ASSERT_EQUAL_INT(-42, ft_atoi("   -42"));
+
+    // Test case 5: Positive number with a plus sign
+    TEST_ASSERT_EQUAL_INT(56, ft_atoi("+56"));
+
+    // Test case 6: Number with additional characters after digits
+    TEST_ASSERT_EQUAL_INT(789, ft_atoi("789abc"));
+
+    // Test case 7: Only whitespace
+    TEST_ASSERT_EQUAL_INT(0, ft_atoi("   "));
+
+    // Test case 8: Invalid format with multiple signs
+    TEST_ASSERT_EQUAL_INT(0, ft_atoi("--1234"));
+    TEST_ASSERT_EQUAL_INT(0, ft_atoi("++1234"));
+}
+
 // Main test runner
 int main(void)
 {
@@ -342,6 +370,7 @@ int main(void)
     RUN_TEST(test_ft_memchr);
     RUN_TEST(test_ft_memcmp);
     RUN_TEST(test_ft_strnstr);
+    RUN_TEST(test_ft_atoi);
     return UNITY_END();
 }
 
