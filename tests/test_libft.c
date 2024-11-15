@@ -448,6 +448,30 @@ void test_ft_substr(void)
     TEST_ASSERT_NULL(result3);  // The result should be NULL for a NULL input
 }
 
+// Test function for substr
+void test_ft_strjoin(void) 
+{
+    // Test 1: Basic functionality - substr on a non-empty string
+    const char *s1 = "Hello, ";
+    const char *s2 = "World!";
+    char *result1 = ft_strjoin(s1, s2);
+    TEST_ASSERT_NOT_NULL(result1);  // Check that memory allocation was successful
+    TEST_ASSERT_EQUAL_STRING("Hello, World!", result1);  
+    free(result1);  
+
+    // Test 2: Edge case - empty string
+    const char *s3 = "";
+    const char *s4 = "";
+    char *result2 = ft_strjoin(s3, s4);
+    TEST_ASSERT_EQUAL_STRING("", result2);  // The memory allocation should succeed
+
+    // Test 3: NULL input
+    const char *s5 = NULL;
+    const char *s6 = NULL;
+    char *result3 = ft_strjoin(s5, s6);
+    TEST_ASSERT_NULL(result3);  // The result should be NULL for a NULL input
+}
+
 // Main test runner
 int main(void)
 {
@@ -469,6 +493,7 @@ int main(void)
     RUN_TEST(test_ft_calloc);
     RUN_TEST(test_ft_strdup);
     RUN_TEST(test_ft_substr);
+    RUN_TEST(test_ft_strjoin);
     return UNITY_END();
 }
 

@@ -33,6 +33,7 @@ SRC = \
     ft_calloc.c \
     ft_strdup.c \
     ft_substr.c \
+    ft_strjoin.c \
 
 
 # Object files - .c files
