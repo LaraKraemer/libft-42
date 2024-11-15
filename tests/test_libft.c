@@ -426,6 +426,28 @@ void test_ft_strdup(void)
     TEST_ASSERT_NULL(result3);  // The result should be NULL for a NULL input
 }
 
+// Test function for substr
+void test_ft_substr(void) 
+{
+    // Test 1: Basic functionality - substr on a non-empty string
+    const char* str1 = "Hello, World!";
+    char* result1 = ft_substr(str1, 7, 5);
+    TEST_ASSERT_NOT_NULL(result1);  // Check that memory allocation was successful
+    TEST_ASSERT_EQUAL_STRING("World", result1);  
+    free(result1);  
+
+    // Test 2: Edge case - empty string
+    const char* str2 = "";
+    char* result2 = ft_substr(str2, 7, 5);
+    TEST_ASSERT_NOT_NULL(result2);  // The memory allocation should succeed
+    TEST_ASSERT_EQUAL_STRING("", result2);  // The empty string should be duplicated
+
+    // Test 3: NULL input
+    const char* str3 = NULL;
+    char* result3 = ft_substr(str3, 7, 5);
+    TEST_ASSERT_NULL(result3);  // The result should be NULL for a NULL input
+}
+
 // Main test runner
 int main(void)
 {
@@ -446,6 +468,7 @@ int main(void)
     RUN_TEST(test_ft_atoi);
     RUN_TEST(test_ft_calloc);
     RUN_TEST(test_ft_strdup);
+    RUN_TEST(test_ft_substr);
     return UNITY_END();
 }
 
