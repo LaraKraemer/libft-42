@@ -68,6 +68,11 @@ This project aims to make me a code library in C of functions that I will be abl
   <summary style= "font-size:20px; font-weight:bold"> Non-standard functions </summary>
 <br>
 
+
+- [`ft_substr`](ft_substr.c)	- returns a substring of the input string starting at a specified index and with a specified length.
+- [`ft_strjoin`](ft_strjoin.c)	- returns a new string that concatenates two input strings.
+- [`ft_strtrim`](ft_strtrim.c) - returns a new string with characters from the set removed from both ends of the input string.
+
 </details>
 
 <br>
