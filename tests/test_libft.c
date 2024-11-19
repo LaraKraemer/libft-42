@@ -581,6 +581,34 @@ void test_ft_strmapi(void)
     TEST_ASSERT_NULL(result3);  // Result should be NULL
 }
 
+void	print_index_and_char(unsigned int index, char *c)
+{
+    if (index % 2 == 0)
+        *c = *c - 32;  // Capitalize every second character (even index)
+}
+
+void test_ft_striteri(void) 
+{
+    // Test case 1: Capitalize every second character
+    char string1[] = "hello world";
+    ft_striteri(string1, print_index_and_char);
+
+    TEST_ASSERT_EQUAL_STRING("HeLlO WoRlD", string1);  // Check if the string was modified correctly
+
+    // Test case 2: Single character string (should remain the same)
+    char string2[] = "ab";
+    ft_striteri(string2, print_index_and_char);
+    TEST_ASSERT_EQUAL_STRING("Ab", string2);  // No change for single character
+
+    // Test case 3: Empty string (should remain empty)
+    char string3[] = "";
+    ft_striteri(string3, print_index_and_char);
+    TEST_ASSERT_EQUAL_STRING("", string3);  // Empty string should stay empty
+
+    // Test case 4: NULL string (should do nothing, no crash)
+    ft_striteri(NULL, print_index_and_char);  // Should not crash or modify anything
+}
+
 // Main test runner
 int main(void)
 {
@@ -607,6 +635,7 @@ int main(void)
     RUN_TEST(test_ft_split);
     RUN_TEST(test_ft_itoa);
     RUN_TEST(test_ft_strmapi);
+    RUN_TEST(test_ft_striteri);
     return UNITY_END();
 }
 
