@@ -560,6 +560,27 @@ void test_ft_itoa(void)
     free(result5);  // Free the allocated memory
 }
 
+char ft_capitalize_second(unsigned int index, char c)
+{
+    if (index % 2 == 1)  // If index is odd, capitalize the character
+        return ft_toupper(c);
+    return c;  // Otherwise, return the character unchanged
+}
+
+void test_ft_strmapi(void) 
+{
+
+    // Test case 1: Basic lower to upper conversion 
+    char *string1 = "hello world!";
+    char *result1 = ft_strmapi(string1, ft_capitalize_second);
+    TEST_ASSERT_NOT_NULL(result1);  // Ensure memory allocation succeeded
+    TEST_ASSERT_EQUAL_STRING("hElLo wOrLd!", result1);
+    free(result1);  // Free the allocated memory
+
+    char *result3 = ft_strmapi(NULL, ft_capitalize_second);  // NULL input
+    TEST_ASSERT_NULL(result3);  // Result should be NULL
+}
+
 // Main test runner
 int main(void)
 {
@@ -585,6 +606,7 @@ int main(void)
     RUN_TEST(test_ft_strtrim);
     RUN_TEST(test_ft_split);
     RUN_TEST(test_ft_itoa);
+    RUN_TEST(test_ft_strmapi);
     return UNITY_END();
 }
 
