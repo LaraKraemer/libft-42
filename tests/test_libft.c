@@ -495,6 +495,38 @@ void test_ft_strtrim(void)
     TEST_ASSERT_NULL(trimmed3);  // Check that memory allocation was successful
 }
 
+// Test function for strtrim
+void test_ft_split(void) 
+{
+    // Test 1
+    char **result1 = ft_split("  Hello   42  students!  ", ' ');
+    // Check that memory allocation was successful
+    TEST_ASSERT_NOT_NULL(result1);
+    // Verify the contents of the result
+    TEST_ASSERT_EQUAL_STRING("Hello", result1[0]);    // Check first word
+    TEST_ASSERT_EQUAL_STRING("42", result1[1]);       // Check second word
+    TEST_ASSERT_EQUAL_STRING("students!", result1[2]); // Check third word
+    TEST_ASSERT_NULL(result1[3]);                    
+    for (int i = 0; result1[i]; i++)
+        free(result1[i]);
+    free(result1); 
+
+    // Test two
+    char **result2 = ft_split("  !  ", ' ');
+    TEST_ASSERT_NOT_NULL(result1);
+    TEST_ASSERT_EQUAL_STRING("!", result2[0]);  
+    TEST_ASSERT_NULL(result2[1]);                    
+    for (int i = 0; result2[i]; i++)
+        free(result2[i]);
+    free(result2);
+
+    // Test 3
+    char **result3 = ft_split("     ", ' ');
+    TEST_ASSERT_NOT_NULL(result3);
+    TEST_ASSERT_NULL(result3[0]);                     
+    free(result3);
+}
+
 
 // Main test runner
 int main(void)
@@ -519,6 +551,7 @@ int main(void)
     RUN_TEST(test_ft_substr);
     RUN_TEST(test_ft_strjoin);
     RUN_TEST(test_ft_strtrim);
+    RUN_TEST(test_ft_split);
     return UNITY_END();
 }
 
