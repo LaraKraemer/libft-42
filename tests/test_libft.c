@@ -527,6 +527,38 @@ void test_ft_split(void)
     free(result3);
 }
 
+void test_ft_itoa(void) 
+{
+    // Test case 1: Basic positive number
+    char *result1 = ft_itoa(1234);
+    TEST_ASSERT_NOT_NULL(result1);  // Ensure memory allocation succeeded
+    TEST_ASSERT_EQUAL_STRING("1234", result1);
+    free(result1);  // Free the allocated memory
+
+    // Test case 2: Basic negative number
+    char *result2 = ft_itoa(-1234);
+    TEST_ASSERT_NOT_NULL(result2);  // Ensure memory allocation succeeded
+    TEST_ASSERT_EQUAL_STRING("-1234", result2);
+    free(result2);  // Free the allocated memory
+
+    // Test case 3: MIN integer value
+    char *result3 = ft_itoa(-2147483648);
+    TEST_ASSERT_NOT_NULL(result3);  // Ensure memory allocation succeeded
+    TEST_ASSERT_EQUAL_STRING("-2147483648", result3);
+    free(result3);  // Free the allocated memory
+
+    // Test case 3: MAX integer value
+    char *result4 = ft_itoa(2147483647);
+    TEST_ASSERT_NOT_NULL(result4);  // Ensure memory allocation succeeded
+    TEST_ASSERT_EQUAL_STRING("2147483647", result4);
+    free(result4);  // Free the allocated memory
+
+    // Test case 3: MAX integer value
+    char *result5 = ft_itoa(0);
+    TEST_ASSERT_NOT_NULL(result5);  // Ensure memory allocation succeeded
+    TEST_ASSERT_EQUAL_STRING("0", result5);
+    free(result5);  // Free the allocated memory
+}
 
 // Main test runner
 int main(void)
@@ -552,6 +584,7 @@ int main(void)
     RUN_TEST(test_ft_strjoin);
     RUN_TEST(test_ft_strtrim);
     RUN_TEST(test_ft_split);
+    RUN_TEST(test_ft_itoa);
     return UNITY_END();
 }
 
