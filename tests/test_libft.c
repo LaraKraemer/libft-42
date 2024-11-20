@@ -13,6 +13,7 @@
 #include <unity.h>   
 #include "../libft.h"  
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <stddef.h>
 #include <string.h>
@@ -609,6 +610,26 @@ void test_ft_striteri(void)
     ft_striteri(NULL, print_index_and_char);  // Should not crash or modify anything
 }
 
+void test_ft_putchar_fd(void) 
+{
+    // Redirect stderr to a temporary file for verification
+    FILE *temp = freopen("temp_stderr.txt", "w", stderr);
+    TEST_ASSERT_NOT_NULL(temp);
+    // Write a character using ft_putchar_fd
+    ft_putchar_fd('Z', 2);
+    // Close the file and reopen it for reading
+    fclose(temp);
+    temp = fopen("temp_stderr.txt", "r");
+    TEST_ASSERT_NOT_NULL(temp);
+    // Read the written character
+    char result = fgetc(temp);
+    fclose(temp);
+    // Verify the result
+    TEST_ASSERT_EQUAL_CHAR('Z', result);
+    // Clean up
+    remove("temp_stderr.txt");
+}
+
 // Main test runner
 int main(void)
 {
@@ -636,6 +657,7 @@ int main(void)
     RUN_TEST(test_ft_itoa);
     RUN_TEST(test_ft_strmapi);
     RUN_TEST(test_ft_striteri);
+    RUN_TEST(test_ft_putchar_fd);
     return UNITY_END();
 }
 
