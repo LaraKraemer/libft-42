@@ -651,6 +651,27 @@ void test_ft_putstr_fd(void)
     remove("temp_stderr.txt");
 }
 
+void test_ft_putendl_fd(void) 
+{
+    // Redirect stderr to a temporary file for verification
+    FILE *temp = freopen("temp_stderr.txt", "w", stderr);
+    TEST_ASSERT_NOT_NULL(temp);
+    // Write a character using ft_putchar_fd
+    ft_putendl_fd("Hello", 2);
+    // Close the file and reopen it for reading
+    fclose(temp);
+    temp = fopen("temp_stderr.txt", "r");
+    TEST_ASSERT_NOT_NULL(temp);
+    // Read the written string
+    char buffer[100] = {0}; // Adjust size as needed
+    fgets(buffer, sizeof(buffer), temp);
+    fclose(temp);
+    // Verify the result
+    TEST_ASSERT_EQUAL_STRING("Hello\n", buffer);
+    // Clean up
+    remove("temp_stderr.txt");
+}
+
 // Main test runner
 int main(void)
 {
@@ -680,6 +701,7 @@ int main(void)
     RUN_TEST(test_ft_striteri);
     RUN_TEST(test_ft_putchar_fd);
     RUN_TEST(test_ft_putstr_fd);
+    RUN_TEST(test_ft_putendl_fd);
     return UNITY_END();
 }
 
