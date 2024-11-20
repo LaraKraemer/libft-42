@@ -672,6 +672,23 @@ void test_ft_putendl_fd(void)
     remove("temp_stderr.txt");
 }
 
+void test_ft_lstnew(void) {
+    // Test Case 1: Create a node with a valid content
+    char *content = "Test content";
+    t_list *node = ft_lstnew(content);
+    TEST_ASSERT_NOT_NULL(node);              // Ensure the node is created
+    TEST_ASSERT_EQUAL_PTR(content, node->content); // Verify the content matches
+    TEST_ASSERT_NULL(node->next);           // Ensure the 'next' pointer is NULL
+    free(node);
+
+    // Test Case 2: Create a node with NULL content
+    t_list *null_node = ft_lstnew(NULL);
+    TEST_ASSERT_NOT_NULL(null_node);        // Ensure the node is created
+    TEST_ASSERT_NULL(null_node->content);   // Content should be NULL
+    TEST_ASSERT_NULL(null_node->next);      // 'next' pointer should still be NULL
+    free(null_node);
+}
+
 // Main test runner
 int main(void)
 {
@@ -702,6 +719,7 @@ int main(void)
     RUN_TEST(test_ft_putchar_fd);
     RUN_TEST(test_ft_putstr_fd);
     RUN_TEST(test_ft_putendl_fd);
+    RUN_TEST(test_ft_lstnew);
     return UNITY_END();
 }
 

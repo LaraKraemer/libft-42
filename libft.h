@@ -5,7 +5,7 @@
 #include <unistd.h> 
 # define LIBFT_H
 
-/* String functions */
+
 int	ft_strncmp(char *s1, char *s2, unsigned int n);
 size_t	ft_strlen(const char *str);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
@@ -40,5 +40,11 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+typedef	struct  s_list
+{
+	void			*content;
+	struct s_list	*next;
+}				    t_list;
+t_list	*ft_lstnew(void *content);
 
 #endif
