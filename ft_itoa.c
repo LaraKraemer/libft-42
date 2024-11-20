@@ -12,7 +12,7 @@
 
 #include <libft.h>
 
-static int 	count_n(int n);
+static int	count_n(int n);
 
 char	*ft_itoa(int n)
 {
@@ -21,7 +21,6 @@ char	*ft_itoa(int n)
 	char	*s;
 
 	i = n;
-
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
 	len = count_n(n);
@@ -39,20 +38,20 @@ char	*ft_itoa(int n)
 	}
 	if (i < 0)
 		*s = '-';
-	return(s);
-}	
+	return (s);
+}
 
-static int 	count_n(int n)
+static int	count_n(int n)
 {
 	int	len;
 
 	len = 1;
-	if ( n < 0)
+	if (n < 0)
 	{
 		len++;
 		n = n * -1;
 	}
-	while ( n > 9)
+	while (n > 9)
 	{
 		len++;
 		n = n / 10;

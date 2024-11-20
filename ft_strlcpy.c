@@ -18,9 +18,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t destSize)
 	src_len = ft_strlen(src);
 	if (destSize == 0)
 		return (src_len);
-	// if dest has enough space to hold src plus \0
 	if (src_len + 1 < destSize)
-		// copy whole src plus \0
 		ft_memcpy(dest, src, src_len + 1);
 	else if (destSize != 0)
 	{

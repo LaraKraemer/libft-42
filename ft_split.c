@@ -12,18 +12,16 @@
 
 #include <libft.h>
 
-static size_t   ft_count_s(char const *s, char c);
-static void	*ft_free_s(char **s, int count);
+static size_t	ft_count_s(char const *s, char c);
+static void		*ft_free_s(char **s, int count);
 
 char	**ft_split(const char *s, char c)
 {
 	char	**new_string;
 	size_t	len_string;
-	int 	i;
+	int		i;
 
-	if (s == NULL)
-		return (NULL);
-	new_string = (char **)malloc((ft_count_s(s, c) +1 ) * sizeof(char *));
+	new_string = (char **)malloc((ft_count_s(s, c) + 1) * sizeof (char *));
 	if (new_string == NULL)
 		return (NULL);
 	i = 0;
@@ -38,7 +36,7 @@ char	**ft_split(const char *s, char c)
 				len_string++;
 			new_string[i] = ft_substr(s, 0, len_string);
 			if (!new_string[i++])
-				return (ft_free_s(new_string, i -1 ));
+				return (ft_free_s(new_string, i - 1));
 			s += len_string;
 		}
 	}
@@ -58,7 +56,7 @@ static size_t	ft_count_s(char const *s, char c)
 		if (*s == c)
 		{
 			s++;
-		} 
+		}
 		if (*s)
 		{
 			count++;

@@ -11,10 +11,10 @@
 /* ************************************************************************** */
 #include <libft.h>
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	size_t	s_len;
-	char 	*sub_s;
+	char	*sub_s;
 
 	s_len = 0;
 	if (s == NULL)

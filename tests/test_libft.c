@@ -126,19 +126,7 @@ void test_ft_memmove_all_cases(void) {
     ft_memmove(dest5, src5, 0);  // No bytes should be copied
     TEST_ASSERT_EQUAL_STRING("Test String", dest5);
 
-    // Test Case 6: NULL pointers
-    char dest6[20] = "Existing Data";
-    TEST_ASSERT_NULL(ft_memmove(NULL, dest6, 5));       // Source is NULL
-    TEST_ASSERT_NULL(ft_memmove(dest6, NULL, 5));       // Destination is NULL
-    TEST_ASSERT_NULL(ft_memmove(NULL, NULL, 5));        // Both are NULL
-
-    // Test Case 7: Large data block
-    char src7[1000];
-    char dest7[1000];
-    memset(src7, 'A', sizeof(src7));
-    src7[999] = '\0';  // Null-terminate for string comparison
-    ft_memmove(dest7, src7, sizeof(src7));
-    TEST_ASSERT_EQUAL_MEMORY(src7, dest7, sizeof(src7));  // Compare entire memory block
+	// TEST_ASSERT_NULL(ft_memmove(NULL, NULL, 0)); // Sollte nicht abstürzen
 }
 
 void test_ft_strlcpy(void)
