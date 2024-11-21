@@ -392,6 +392,19 @@ void test_ft_calloc(void)
     }
 }
 
+#define EXPECT_SEGFAULT(code_block)                \
+    do {                                           \
+        if (fork() == 0) { /* Child process */     \
+            signal(SIGSEGV, SIG_DFL); /* Default */\
+            code_block;                            \
+            exit(0); /* Shouldn't reach here */    \
+        }                                          \
+        int status;                                \
+        wait(&status);                             \
+        TEST_ASSERT_TRUE(WIFSIGNALED(status));     \
+        TEST_ASSERT_EQUAL(SIGSEGV, WTERMSIG(status));\
+    } while (0)
+	
 // Test function for strdup
 void test_ft_strdup(void) 
 {
@@ -409,10 +422,11 @@ void test_ft_strdup(void)
     TEST_ASSERT_EQUAL_STRING(str2, result2);  // The empty string should be duplicated
     free(result2);
 
-    // Test 3: NULL input
-    const char* str3 = NULL;
-    char* result3 = ft_strdup(str3);
-    TEST_ASSERT_NULL(result3);  // The result should be NULL for a NULL input
+    EXPECT_SEGFAULT({
+        const char* str3 = NULL;
+        char* result3 = ft_strdup(str3); // This should cause a segmentation fault
+        (void)result3; // Avoid unused variable warning
+    });
 }
 
 // Test function for substr
@@ -481,7 +495,9 @@ void test_ft_strtrim(void)
     // Test 3: NULL input
     const char *str3 = "";
 	char *trimmed3 = ft_strtrim(str3, " \n\t");
-    TEST_ASSERT_NULL(trimmed3);  // Check that memory allocation was successful
+    TEST_ASSERT_EQUAL_STRING("", trimmed3);  // Check that memory allocation was successful
+	free(trimmed3); 
+
 }
 
 // Test function for strtrim
@@ -676,6 +692,18 @@ void test_ft_lstnew(void) {
     TEST_ASSERT_NULL(null_node->next);      // 'next' pointer should still be NULL
     free(null_node);
 }
+void test_ft_lstsize(void) {
+    // Create nodes manually
+    t_list node3 = { "Third", NULL };
+    t_list node2 = { "Second", &node3 };
+    t_list node1 = { "First", &node2 };
+
+    // Test Case 1: Count nodes in the list
+    TEST_ASSERT_EQUAL_INT(3, ft_lstsize(&node1));
+
+    // Test Case 2: Empty list
+    TEST_ASSERT_EQUAL_INT(0, ft_lstsize(NULL));
+}
 
 // Main test runner
 int main(void)
@@ -708,6 +736,7 @@ int main(void)
     RUN_TEST(test_ft_putstr_fd);
     RUN_TEST(test_ft_putendl_fd);
     RUN_TEST(test_ft_lstnew);
+	RUN_TEST(test_ft_lstsize);
     return UNITY_END();
 }
 
