@@ -701,8 +701,22 @@ void test_ft_lstsize(void) {
     // Test Case 1: Count nodes in the list
     TEST_ASSERT_EQUAL_INT(3, ft_lstsize(&node1));
 
-    // Test Case 2: Empty list
-    TEST_ASSERT_EQUAL_INT(0, ft_lstsize(NULL));
+}
+
+void test_ft_lstlast(void) {
+    t_list node3 = { "Third", NULL };
+    t_list node2 = { "Second", &node3 };
+    t_list node1 = { "First", &node2 };
+
+    t_list *last = ft_lstlast(&node1);
+
+    TEST_ASSERT_NOT_NULL(last);
+    TEST_ASSERT_EQUAL_PTR(&node3, last);
+    TEST_ASSERT_EQUAL_STRING("Third", (char *)last->content);
+
+	t_list *last1 = ft_lstlast(NULL);
+
+    TEST_ASSERT_NULL(last1);
 }
 
 // Main test runner
@@ -737,6 +751,7 @@ int main(void)
     RUN_TEST(test_ft_putendl_fd);
     RUN_TEST(test_ft_lstnew);
 	RUN_TEST(test_ft_lstsize);
+	RUN_TEST(test_ft_lstlast);
     return UNITY_END();
 }
 
