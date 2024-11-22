@@ -26,18 +26,17 @@ char	*ft_itoa(int n)
 	len = count_n(n);
 	if (n < 0)
 		n = n * (-1);
-	len += 1;
-	s = (char *)malloc(sizeof (char) * (len + 1));
+	s = (char *)malloc((len + 1) * sizeof (char));
 	if (s == NULL)
 		return (NULL);
-	s[--len] = '\0';
+	s[len] = '\0';
 	while ((--len) >= 0)
 	{
 		s[len] = ((n % 10) + 48);
 		n = n / 10;
 	}
 	if (i < 0)
-		*s = '-';
+		s[0] = '-';
 	return (s);
 }
 

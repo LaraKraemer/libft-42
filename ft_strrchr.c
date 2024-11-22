@@ -16,8 +16,6 @@ char	*ft_strrchr(const char *s, int c)
 	const char	*last_occurrence;
 	char		cc;
 
-	if (s == NULL)
-		return (NULL);
 	last_occurrence = NULL;
 	cc = (char) c;
 	while (*s)

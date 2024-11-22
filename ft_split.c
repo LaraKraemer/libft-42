@@ -49,14 +49,10 @@ static size_t	ft_count_s(char const *s, char c)
 	size_t	count;
 
 	count = 0;
-	if (s == NULL)
-		return (0);
 	while (*s)
 	{
-		if (*s == c)
-		{
+		if (*s == c && *s)
 			s++;
-		}
 		if (*s)
 		{
 			count++;
