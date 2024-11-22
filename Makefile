@@ -1,7 +1,15 @@
-# @ represent the target e.g. filename 
-# $< first dependenczy of rule 
-# $^: 
-# current dir: -I.
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/22 18:10:29 by lkramer           #+#    #+#              #
+#    Updated: 2024/11/22 18:10:36 by lkramer          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC          = gcc 
 
 CFLAGS      = -Wall -Wextra -Werror -I. -Itests/unity/src

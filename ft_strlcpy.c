@@ -9,7 +9,7 @@
 /*   Updated: 2024/11/12 13:31:12 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t destSize)
 {

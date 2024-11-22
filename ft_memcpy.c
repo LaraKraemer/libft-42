@@ -6,10 +6,11 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 12:10:35 by lkramer           #+#    #+#             */
-/*   Updated: 2024/11/12 14:31:59 by lkramer          ###   ########.fr       */
+/*   Updated: 2024/11/22 18:58:25 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+
+#include "libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t numBytes)
 {

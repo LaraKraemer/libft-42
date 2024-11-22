@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 static size_t	ft_count_s(char const *s, char c);
 static void		*ft_free_s(char **s, int count);
@@ -44,21 +44,23 @@ char	**ft_split(const char *s, char c)
 	return (new_string);
 }
 
-static size_t	ft_count_s(char const *s, char c)
+static size_t	ft_count_s(const char *s, char c)
 {
 	size_t	count;
+	size_t	x;
 
 	count = 0;
+	x = 0;
 	while (*s)
 	{
-		if (*s == c && *s)
-			s++;
-		if (*s)
+		if (*s != c && x == 0)
 		{
+			x = 1;
 			count++;
-			while (*s && *s != c)
-				s++;
 		}
+		else if (*s == c)
+			x = 0;
+		s++;
 	}
 	return (count);
 }

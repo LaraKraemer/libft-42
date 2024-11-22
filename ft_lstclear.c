@@ -9,7 +9,7 @@
 /*   Updated: 2024/11/20 13:30:56 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <libft.h>
+#include "libft.h"
 
 void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
