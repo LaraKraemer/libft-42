@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 08:48:20 by lkramer           #+#    #+#             */
-/*   Updated: 2024/11/22 18:57:40 by lkramer          ###   ########.fr       */
+/*   Updated: 2024/11/25 13:17:07 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_putstr_fd(char *s, int fd)
 {
 	if (s)
-		write(fd, s, ft_strlen(s))
+		write(fd, s, ft_strlen(s));
 }

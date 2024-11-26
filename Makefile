@@ -6,11 +6,11 @@
 #    By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 18:10:29 by lkramer           #+#    #+#              #
-#    Updated: 2024/11/22 18:10:36 by lkramer          ###   ########.fr        #
+#    Updated: 2024/11/26 16:17:15 by lkramer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC          = gcc 
+CC          = cc 
 
 CFLAGS      = -Wall -Wextra -Werror -I. -Itests/unity/src
 
@@ -57,15 +57,15 @@ SRC         = \
 OBJ         = $(SRC:.c=.o)
 
 BONUS       = \
-            ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c \
+            ft_lstnew_bonus.c \
+			ft_lstadd_front_bonus.c \
+			ft_lstsize_bonus.c \
+			ft_lstlast_bonus.c \
+			ft_lstadd_back_bonus.c \
+			ft_lstdelone_bonus.c \
+			ft_lstclear_bonus.c \
+			ft_lstiter_bonus.c \
+			ft_lstmap_bonus.c \
 
 BONUS_OBJ   = $(BONUS:.c=.o)
 
@@ -110,5 +110,6 @@ $(TEST_EXEC): $(SRC) $(BONUS) $(UNITY_SRC) $(TEST_SRC)
 test: $(TEST_EXEC)
 	./$(TEST_EXEC)
 
+
 # Phony targets
-.PHONY: all clean fclean re bonus test
+.PHONY: all clean fclean re bonus
