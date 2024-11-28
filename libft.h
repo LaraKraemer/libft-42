@@ -6,7 +6,7 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:01:59 by lkramer           #+#    #+#             */
-/*   Updated: 2024/11/28 15:33:15 by lkramer          ###   ########.fr       */
+/*   Updated: 2024/11/28 15:36:46 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stddef.h>
 # include <unistd.h>
 # include <stdint.h>
+# include <stdlib.h>
 
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 size_t	ft_strlen(const char *str);
