@@ -6,10 +6,9 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 16:23:54 by lkramer           #+#    #+#             */
-/*   Updated: 2024/11/13 16:31:12 by lkramer          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:31:04 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
 int	ft_toupper(int c)
 {

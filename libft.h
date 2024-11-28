@@ -6,15 +6,13 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 18:01:59 by lkramer           #+#    #+#             */
-/*   Updated: 2024/11/25 13:32:24 by lkramer          ###   ########.fr       */
+/*   Updated: 2024/11/28 15:33:15 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 # include <stddef.h>
-# include <stdlib.h>
-# include <stddef.h> 
 # include <unistd.h>
 # include <stdint.h>
 

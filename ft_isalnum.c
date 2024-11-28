@@ -6,10 +6,9 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:16:59 by lkramer           #+#    #+#             */
-/*   Updated: 2024/11/11 12:27:30 by lkramer          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:24:16 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
 int	ft_isalnum(int c)
 {

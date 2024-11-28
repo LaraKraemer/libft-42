@@ -6,10 +6,9 @@
 /*   By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 11:18:27 by lkramer           #+#    #+#             */
-/*   Updated: 2024/11/11 11:18:35 by lkramer          ###   ########.fr       */
+/*   Updated: 2024/11/26 16:24:42 by lkramer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
 int	ft_isdigit(int c)
 {

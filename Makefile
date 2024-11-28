@@ -6,7 +6,7 @@
 #    By: lkramer <lkramer@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/22 18:10:29 by lkramer           #+#    #+#              #
-#    Updated: 2024/11/26 16:17:15 by lkramer          ###   ########.fr        #
+#    Updated: 2024/11/28 15:32:33 by lkramer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,4 +112,4 @@ test: $(TEST_EXEC)
 
 
 # Phony targets
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re bonus test
